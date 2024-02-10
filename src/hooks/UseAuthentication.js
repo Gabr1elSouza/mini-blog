@@ -1,8 +1,10 @@
-import {db} from "../firebase/config"
+import { db } from "../firebase/config";
 
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  signInWithEmailAndPassword,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 
@@ -22,7 +24,7 @@ export const useAuthentication = () => {
       return;
     }
   }
-
+  //register
   const createUser = async (data) => {
     checkIfIsCancelled();
     setLoading(true);
@@ -57,9 +59,44 @@ export const useAuthentication = () => {
       setLoading(false);
     }
   };
+
+  //logout
+  const logout = () => {
+    checkIfIsCancelled();
+    signOut(auth);
+  };
+
+  //login - sign in
+  const login = async (data) => {
+    checkIfIsCancelled();
+    setLoading(true);
+    setError(false);
+
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      setLoading(false);
+    } catch (error) {
+      let systemErrorMessage;
+      console.log(error.message);
+
+      if (error.message.includes("user-not-found")) {
+        systemErrorMessage = "Usuário não encotrado.";
+      } else if (error.message.includes("password")) {
+        systemErrorMessage = "Senha incorreta.";
+      } else if (error.message.includes("temporarily disabled")) {
+        systemErrorMessage = "Login desativado temporariamente, por muitas tentativas mal sucedidas.";
+      } else {
+        systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde.";
+      }
+      setError(systemErrorMessage);
+      setLoading(false);
+      console.log(systemErrorMessage);
+    }
+  };
+
   useEffect(() => {
     return () => setCancelled(true);
   }, []);
 
-  return { auth, createUser, error, loading };
+  return { auth, createUser, error, loading, logout, login };
 };
