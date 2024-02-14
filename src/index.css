@@ -30,7 +30,7 @@ nav button {
 
 a:hover,
 nav button:hover {
-  color: #bbb;
+  color: #5a5a5a;
   border: 0.5px solid #ececec;
   border-radius: 5px;
 }

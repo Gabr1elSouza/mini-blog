@@ -44,7 +44,7 @@ const Register = () => {
           <span>Nome:</span>
           <input
             type="text"
-            name="displayname"
+            name="displayName"
             required
             placeholder="Nome do Usuário"
             value={displayname}

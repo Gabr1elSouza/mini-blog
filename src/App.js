@@ -35,7 +35,7 @@ function App() {
   if (loadingUser) {
     return <p>Carregando...</p>;
   }
-
+  
   return (
     <div className="App">
       <AuthProvider value={{ user }}>
