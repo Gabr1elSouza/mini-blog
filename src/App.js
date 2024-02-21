@@ -19,6 +19,8 @@ import DashBoard from "./pages/DashBoard/DashBoard";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Search from "./pages/Search/Search";
+import Posts from "./pages/Posts/Posts";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -35,7 +37,7 @@ function App() {
   if (loadingUser) {
     return <p>Carregando...</p>;
   }
-  
+
   return (
     <div className="App">
       <AuthProvider value={{ user }}>
@@ -45,6 +47,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/posts/:id" element={<Posts />} />
               <Route
                 path="/register"
                 element={!user ? <Register /> : <Navigate to="/" />}
