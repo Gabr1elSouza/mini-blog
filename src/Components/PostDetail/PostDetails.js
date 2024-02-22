@@ -9,12 +9,12 @@ const PostDetails = ({ post }) => {
       <h2>{post.title}</h2>
       <p className="createdby">{post.createdBy}</p>
       <div className="tags">
-        {post.tagsAray.map((tagAray) => {
-          <p key={tagAray}>
+        {post.tagsAray.map((tag) => (
+          <p key={tag}>
             <span>#</span>
-            {tagAray}
-          </p>;
-        })}
+            {tag}
+          </p>
+        ))}
       </div>
       <Link to={`/posts/${post.id}`}>Ler</Link>
     </div>

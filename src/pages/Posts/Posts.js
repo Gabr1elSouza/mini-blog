@@ -6,12 +6,25 @@ import { useFetchDocument } from "../../hooks/UseFetchDocument";
 
 const Posts = () => {
   const { id } = useParams();
-  const {document:post}= useFetchDocument("posts",id)
+  const { document: post, loading } = useFetchDocument("posts", id);
   return (
-    <div>
+    <div className="post_container">
+      {loading && <p>Carregando Post</p>}
       {post && (
         <>
-        <h1>{post.title}</h1></>
+          <h1>{post.title}</h1>
+          <img src={post.image} alt={post.title} />
+          <p>{post.body}</p>
+          <h3>Este post trata sobre:</h3>
+          <div className="tags">
+          {post.tagsAray.map((tag) => (
+            <p key={tag}>
+              <span>#</span>
+              {tag}
+            </p>
+          ))}
+          </div>
+        </>
       )}
     </div>
   );
