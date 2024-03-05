@@ -16,11 +16,12 @@ import Navbar from "./Components/Navbar/Navbar";
 import About from "./pages/About/About";
 import CreatePost from "./pages/CreatePost/CreatePost";
 import DashBoard from "./pages/DashBoard/DashBoard";
+import EditPost from "./pages/EditPost/EditPost";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
+import Posts from "./pages/Posts/Posts";
 import Register from "./pages/Register/Register";
 import Search from "./pages/Search/Search";
-import Posts from "./pages/Posts/Posts";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -60,6 +61,10 @@ function App() {
               <Route
                 path="/posts/create"
                 element={user ? <CreatePost /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/posts/edit/:id"
+                element={user ? <EditPost /> : <Navigate to="/login" />}
               />
               <Route
                 path="/dashboard"
