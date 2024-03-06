@@ -25,7 +25,7 @@ const EditPost = () => {
       setImage(post.image);
       setBody(post.body);
 
-      const textTags = post.tags.join(",");
+      const textTags = post.tagsArray.join(", ");
 
       setTags(textTags);
     }
@@ -49,22 +49,22 @@ const EditPost = () => {
     }
 
     // create tags array
-    const tagsAray = tags.split(",").map((tag) => tag.trim());
+    const tagsArray = tags.split(", ").map((tag) => tag.trim().toLowerCase());
 
-    console.log(tagsAray);
+    console.log(tagsArray);
 
     console.log({
       title,
       image,
       body,
-      tags: tagsAray,
+      tagsArray,
     });
 
     const data = {
       title,
       image,
       body,
-      tags: tagsAray,
+      tagsArray,
     };
 
     updateDocument(id, data);

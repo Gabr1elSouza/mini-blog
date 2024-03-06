@@ -28,7 +28,7 @@ const CreatePost = () => {
     }
 
     //Criar o array de tags
-    const tagsAray = tags.split(",").map((tag) => tag.trim().toLowerCase());
+    const tagsArray = tags.split(", ").map((tag) => tag.trim().toLowerCase());
 
     //checar todos os valores
     if (!title || !image || !tags || !body) {
@@ -41,7 +41,7 @@ const CreatePost = () => {
       title,
       image,
       body,
-      tagsAray,
+      tagsArray,
       uid: user.uid,
       createdBy: user.displayName,
     });
